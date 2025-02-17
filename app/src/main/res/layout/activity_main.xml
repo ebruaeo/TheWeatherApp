@@ -5,15 +5,79 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/homepage_bg"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:id="@+id/House"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="-2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/highAndLowTextView"
+        app:srcCompat="@drawable/house" />
+
+    <TextView
+        android:id="@+id/degreeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_font"
+        android:includeFontPadding="false"
+        android:text="19°"
+        android:textAlignment="center"
+        android:textColor="@color/textColorWhite"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/explanationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
+
+    <TextView
+        android:id="@+id/cityTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/sf_pro_font"
+        android:text="Montreal"
+        android:textAlignment="center"
+        android:textColor="@color/textColorWhite"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/degreeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/highAndLowTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_font"
+        android:text=" H:24° L:18°"
+        android:textAlignment="center"
+        android:textColor="@color/textColorWhite"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explanationTextView" />
+
+    <TextView
+        android:id="@+id/explanationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mostly Clear"
+        android:textAlignment="center"
+        android:textColor="@color/textColorGray"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/highAndLowTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/degreeTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
