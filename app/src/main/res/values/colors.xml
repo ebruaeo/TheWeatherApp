@@ -3,5 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="textColorWhite">#FFFFFFFF</color>
     <color name="textColorGray">#A6A9C4</color>
+    <color name="recyclerActiveRowColor">#48319D</color>
 
 </resources>
