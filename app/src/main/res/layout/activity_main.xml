@@ -8,18 +8,19 @@
     android:background="@drawable/homepage_bg"
     tools:context=".MainActivity">
 
-
-    <ImageView
-        android:id="@+id/House"
-        android:layout_width="390dp"
+    <TextView
+        android:id="@+id/cityTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="-2dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/sf_pro_font"
+        android:text="Montreal"
+        android:textAlignment="center"
+        android:textColor="@color/textColorWhite"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highAndLowTextView"
-        app:srcCompat="@drawable/house" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/degreeTextView"
@@ -31,26 +32,21 @@
         android:textAlignment="center"
         android:textColor="@color/textColorWhite"
         android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/explanationTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
+        app:layout_constraintTop_toBottomOf="@id/cityTextView" />
 
     <TextView
-        android:id="@+id/cityTextView"
+        android:id="@+id/explanationTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/sf_pro_font"
-        android:text="Montreal"
+        android:text="Mostly Clear"
         android:textAlignment="center"
-        android:textColor="@color/textColorWhite"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/degreeTextView"
+        android:textColor="@color/textColorGray"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/degreeTextView" />
 
     <TextView
         android:id="@+id/highAndLowTextView"
@@ -62,22 +58,74 @@
         android:textColor="@color/textColorWhite"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explanationTextView" />
+        app:layout_constraintTop_toBottomOf="@id/explanationTextView" />
 
-    <TextView
-        android:id="@+id/explanationTextView"
+
+    <ImageView
+        android:id="@+id/House"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="-2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/highAndLowTextView"
+        app:srcCompat="@drawable/house" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mostly Clear"
-        android:textAlignment="center"
-        android:textColor="@color/textColorGray"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/highAndLowTextView"
+        android:alpha="0.9"
+        android:background="@drawable/gradient"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/degreeTextView" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            tools:listitem="@layout/recycler_row"
+            app:layout_constraintStart_toStartOf="@id/bottomConstraintLayout"
+            app:layout_constraintEnd_toEndOf="@id/bottomConstraintLayout"
+            app:layout_constraintBottom_toTopOf="@id/plusButton"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bottombar_bg"
+            app:layout_constraintBottom_toBottomOf="@id/bottomConstraintLayout"
+            app:layout_constraintEnd_toEndOf="@id/bottomConstraintLayout"
+            app:layout_constraintStart_toStartOf="@id/bottomConstraintLayout" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/button_bg"
+            app:layout_constraintBottom_toBottomOf="@id/bottomConstraintLayout"
+            app:layout_constraintEnd_toEndOf="@id/bottomConstraintLayout"
+            app:layout_constraintStart_toStartOf="@id/bottomConstraintLayout" />
+
+        <ImageButton
+            android:id="@+id/plusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_ic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/bottomConstraintLayout"
+            />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
