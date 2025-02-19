@@ -7,6 +7,9 @@ android {
     namespace = "com.example.theweatherapp"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "com.example.theweatherapp"
         minSdk = 24
