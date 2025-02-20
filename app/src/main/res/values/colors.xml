@@ -4,5 +4,7 @@
     <color name="textColorWhite">#FFFFFFFF</color>
     <color name="textColorGray">#A6A9C4</color>
     <color name="recyclerActiveRowColor">#48319D</color>
+    <color name="searchBarHintColor">#99EBEBF5</color>
+
 
 </resources>
