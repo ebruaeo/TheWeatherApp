@@ -31,7 +31,9 @@ class SearchScreenActivity : AppCompatActivity() {
             openKeyboard()
         }
 
-
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
     }
 
