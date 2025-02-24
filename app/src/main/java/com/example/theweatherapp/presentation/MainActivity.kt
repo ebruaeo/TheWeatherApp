@@ -12,14 +12,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.location.Location
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.theweatherapp.R
 import com.example.theweatherapp.databinding.ActivityMainBinding
-import com.example.theweatherapp.utils.RetrofitInstance
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlin.math.roundToInt
@@ -85,12 +83,12 @@ class MainActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.weather.observe(this) {
             binding.run {
-                cityTextView.text = "London"
-                degreeTextView.text = it.weatherDetails?.temp?.roundToInt().toString() + "°"
+                cityTextView.text = it.cityName
+                degreeTextView.text = it.currentWeatherDetails?.temp?.roundToInt().toString() + "°"
                 explanationTextView.text =
-                    capitalizeEachWord(it.weatherList?.first()?.description)
+                    capitalizeEachWord(it.currentWeatherList?.first()?.description)
                 highAndLowTextView.text =
-                    "H:${it.weatherDetails?.tempMax?.roundToInt()}° L:${it.weatherDetails?.tempMin?.roundToInt()}°"
+                    "H:${it.currentWeatherDetails?.tempMax?.roundToInt()}° L:${it.currentWeatherDetails?.tempMin?.roundToInt()}°"
             }
 
         }
