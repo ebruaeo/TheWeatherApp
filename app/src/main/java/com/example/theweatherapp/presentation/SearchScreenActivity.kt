@@ -1,4 +1,4 @@
-package com.example.theweatherapp
+package com.example.theweatherapp.presentation
 
 import android.content.Context
 import android.graphics.Color

@@ -1,12 +1,12 @@
-package com.example.theweatherapp
+package com.example.theweatherapp.presentation
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theweatherapp.databinding.RecyclerRowBinding
+import com.example.theweatherapp.data.models.CurrentWeatherResponse
 
-class Adapter(private val itemList: List<Weather>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(private val currentWeatherResponse: CurrentWeatherResponse?=null) : RecyclerView.Adapter<Adapter.ViewHolder>() {
     class ViewHolder(val binding: RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -18,13 +18,14 @@ class Adapter(private val itemList: List<Weather>) : RecyclerView.Adapter<Adapte
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return currentWeatherResponse?.currentWeatherList?.size ?:0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.hourTextView.text = itemList[position].time
-        holder.binding.hourlyWeatherImage.setImageResource(itemList[position].weatherIcon)
-        holder.binding.hourlyDegreeTextView.text = itemList[position].degree
+        val weather = currentWeatherResponse?.currentWeatherList?.get(position)
+        holder.binding.run {
+            hourTextView.text = weather?.main
+        }
     }
 
 }
