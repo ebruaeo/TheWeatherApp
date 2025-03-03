@@ -7,10 +7,16 @@ data class WeeklyWeatherResponse(
 )
 
 data class WeeklyWeather(
-    val main: Main? = null
+    val main: Main? = null,
+    @SerializedName("weather")
+    val weatherList: List<Weather?>? = null
 )
 
 data class Main(
     @SerializedName("temp")
     val weeklyWeatherTemp: Double? = null
+)
+
+data class Weather(
+    val icon: String? = null
 )
