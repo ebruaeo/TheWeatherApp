@@ -137,8 +137,9 @@
             android:id="@+id/recyclerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clipToPadding="true"
             android:orientation="horizontal"
-            android:paddingStart="20dp"
+            android:paddingHorizontal="12dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/plusButton"
             app:layout_constraintEnd_toEndOf="@id/bottomConstraintLayout"
@@ -149,6 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/bottombar_bg"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="@id/bottomConstraintLayout"
             app:layout_constraintEnd_toEndOf="@id/bottomConstraintLayout"
             app:layout_constraintStart_toStartOf="@id/bottomConstraintLayout" />

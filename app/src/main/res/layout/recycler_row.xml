@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    android:minWidth="60dp"
     android:layout_height="wrap_content"
     android:background="@drawable/recycler_row_bg"
     android:gravity="center"
@@ -22,10 +23,10 @@
 
     <ImageView
         android:id="@+id/hourOrDayWeatherImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginVertical="16dp"
-        android:src="@drawable/moon_cloud_fast_wind" />
+        android:src="@drawable/ic_list" />
 
     <TextView
         android:id="@+id/hourOrDayDegreeTextView"
