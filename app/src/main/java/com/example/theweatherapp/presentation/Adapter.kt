@@ -3,10 +3,17 @@ package com.example.theweatherapp.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.theweatherapp.data.models.WeeklyWeather
 import com.example.theweatherapp.databinding.RecyclerRowBinding
-import com.example.theweatherapp.data.models.CurrentWeatherResponse
+import kotlin.math.roundToInt
 
-class Adapter(private val currentWeatherResponse: CurrentWeatherResponse?=null) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter() : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    var weeklyWeatherList: List<WeeklyWeather?> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     class ViewHolder(val binding: RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -18,14 +25,13 @@ class Adapter(private val currentWeatherResponse: CurrentWeatherResponse?=null) 
     }
 
     override fun getItemCount(): Int {
-        return currentWeatherResponse?.currentWeatherList?.size ?:0
+        return weeklyWeatherList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val weather = currentWeatherResponse?.currentWeatherList?.get(position)
-        holder.binding.run {
-            hourTextView.text = weather?.main
-        }
-    }
+        val temperature = weeklyWeatherList[position]
+        holder.binding.hourOrDayDegreeTextView.text =
+            temperature?.main?.weeklyWeatherTemp?.roundToInt().toString() + "°"
 
+    }
 }
