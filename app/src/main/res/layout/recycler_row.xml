@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/recycler_row_bg"
@@ -11,7 +10,7 @@
     android:paddingVertical="16dp">
 
     <TextView
-        android:id="@+id/hourTextView"
+        android:id="@+id/hourOrDayTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_font"
@@ -22,14 +21,14 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/hourlyWeatherImage"
+        android:id="@+id/hourOrDayWeatherImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
         android:src="@drawable/moon_cloud_fast_wind" />
 
     <TextView
-        android:id="@+id/hourlyDegreeTextView"
+        android:id="@+id/hourOrDayDegreeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_font"
