@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeWeeklyWeather() {
         viewModel._weeklyWeather.observe(this) { response ->
             if (response.list != null) {
-                adapter?.weeklyWeatherList = response.list
+                adapter.weeklyWeatherList = response.list
             }
         }
     }
