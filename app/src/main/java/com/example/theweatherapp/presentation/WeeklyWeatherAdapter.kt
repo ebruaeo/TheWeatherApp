@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.theweatherapp.data.models.WeeklyWeather
+import com.example.theweatherapp.data.models.WeatherResponse
 import com.example.theweatherapp.databinding.RecyclerRowBinding
 import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
 import kotlin.math.roundToInt
 
-class Adapter() : RecyclerView.Adapter<Adapter.ViewHolder>() {
-    var weeklyWeatherList: List<WeeklyWeather?> = listOf()
+class WeeklyWeatherAdapter() : RecyclerView.Adapter<WeeklyWeatherAdapter.ViewHolder>() {
+    var weatherResponseList: List<WeatherResponse?> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -29,13 +29,13 @@ class Adapter() : RecyclerView.Adapter<Adapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return weeklyWeatherList.size
+        return weatherResponseList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val weeklyWeather = weeklyWeatherList[position]
+        val weeklyWeather = weatherResponseList[position]
         holder.binding.hourOrDayDegreeTextView.text =
-            weeklyWeather?.main?.weeklyWeatherTemp?.roundToInt().toString() + "°"
+            weeklyWeather?.main?.weatherTemp?.roundToInt().toString() + "°"
 
         holder.binding.hourOrDayTextView.text = getNext7DaysOfWeek().get(position % 7)
 
