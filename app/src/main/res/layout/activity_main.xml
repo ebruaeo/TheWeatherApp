@@ -107,6 +107,7 @@
             app:layout_constraintStart_toStartOf="@id/bottomConstraintLayout">
 
             <TextView
+                android:id="@+id/hourlyWeatherTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,11 +115,12 @@
                 android:letterSpacing="0.05"
                 android:text="Hourly Forecast"
                 android:textAlignment="center"
-                android:textColor="@color/textColorGray"
+                android:textColor="@color/textColorWhite"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/weeklyWeatherTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
