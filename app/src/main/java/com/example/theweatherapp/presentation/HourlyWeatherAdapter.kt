@@ -36,7 +36,7 @@ class HourlyWeatherAdapter : RecyclerView.Adapter<HourlyWeatherAdapter.ViewHolde
         holder.binding.hourOrDayDegreeTextView.text =
             hourlyWeather?.main?.weatherTemp?.roundToInt().toString() + "°"
 
-        holder.binding.hourOrDayTextView.text = get24HoursFormatted("hh a").get(position)
+        holder.binding.hourOrDayTextView.text = get24HoursFormatted("hh a").get(position * 3)
 
         val url =
             "https://openweathermap.org/img/wn/${hourlyWeather?.weatherList?.firstOrNull()?.icon}@2x.png"
