@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class WeatherViewModel : ViewModel() {
     val weather = MutableLiveData<CurrentWeatherResponse>()
     val _weeklyWeather = MutableLiveData<WeeklyWeatherResponse>()
+    val _hourlyWeather = MutableLiveData<WeeklyWeatherResponse>()
 
 
     fun fetchWeather(lat: Double, lon: Double) {
@@ -27,14 +28,13 @@ class WeatherViewModel : ViewModel() {
     }
 
 
-    fun fetchWeeklyWeather(lat: Double, lon: Double) {
+    fun fetchHourlyWeather(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
-                val result = RetrofitInstance.api.getWeeklyWeather(lat, lon, Util.API_KEY)
+                val result = RetrofitInstance.api.getHourlyWeather(lat, lon, Util.API_KEY)
                 if (result.isSuccessful) {
                     result.body()?.let {
-                        _weeklyWeather.value = it
-                        println(it)
+                        _hourlyWeather.value = it
                     }
                 } else {
                     Log.e("WeatherViewModel", "Error fetching weather: ${result.message()}")
@@ -45,4 +45,30 @@ class WeatherViewModel : ViewModel() {
         }
 
     }
+
+    fun fetchWeeklyWeather(lat: Double, lon: Double) {
+        viewModelScope.launch {
+            try {
+                val result = RetrofitInstance.api.getWeeklyWeather(lat, lon, Util.API_KEY)
+                if (result.isSuccessful) {
+                    result.body()?.let { response ->
+                        // Take every 8th item
+                        val filteredList =
+                            response.list?.filterIndexed { index, _ -> index % 8 == 0 }
+                        // Create a new response object with the filtered list
+                        val filteredResponse = WeeklyWeatherResponse(filteredList)
+                        // Update LiveData
+                        _weeklyWeather.value = filteredResponse
+                    }
+                } else {
+                    Log.e("WeatherViewModel", "Error fetching weather: ${result.message()}")
+                }
+            } catch (e: Exception) {
+                Log.e("WeatherViewModel", "Error: ${e.localizedMessage}")
+            }
+        }
+
+    }
+
+
 }
