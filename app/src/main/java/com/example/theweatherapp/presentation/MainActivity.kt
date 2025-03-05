@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
     private val viewModel by viewModels<WeatherViewModel>()
-    private val adapter = Adapter()
+    private val weeklyWeatherAdapter = WeeklyWeatherAdapter()
+    private val hourlyWeatherAdapter = HourlyWeatherAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,14 +39,42 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setWindow()
         handleLocationPermission()
-        observeViewModel()
+        observeCurrentWeather()
+        observeHourlyWeather()
+        observeWeeklyWeather()
+
 
         binding.listButton.setOnClickListener {
             val intent = Intent(this, SearchScreenActivity::class.java)
             startActivity(intent)
         }
 
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = hourlyWeatherAdapter
+
+        setHourlyClickListener()
+        setWeeklyClickListener()
+
+    }
+
+    private fun setHourlyClickListener() {
+        binding.run {
+            hourlyWeatherTextView.setOnClickListener {
+                recyclerView.adapter = hourlyWeatherAdapter
+                hourlyWeatherTextView.setTextColor(resources.getColor(R.color.textColorWhite))
+                weeklyWeatherTextView.setTextColor(resources.getColor(R.color.textColorGray))
+
+            }
+        }
+    }
+
+    private fun setWeeklyClickListener() {
+        binding.run {
+            weeklyWeatherTextView.setOnClickListener {
+                recyclerView.adapter = weeklyWeatherAdapter
+                weeklyWeatherTextView.setTextColor(resources.getColor(R.color.textColorWhite))
+                hourlyWeatherTextView.setTextColor(resources.getColor(R.color.textColorGray))
+            }
+        }
     }
 
     private fun handleLocationPermission() {
@@ -88,11 +117,6 @@ class MainActivity : AppCompatActivity() {
         window.navigationBarColor = getResources().getColor(R.color.black)
     }
 
-    private fun observeViewModel() {
-        observeCurrentWeather()
-        observeWeeklyWeather()
-    }
-
     private fun observeCurrentWeather() {
         viewModel.weather.observe(this) {
             binding.run {
@@ -111,7 +135,15 @@ class MainActivity : AppCompatActivity() {
     private fun observeWeeklyWeather() {
         viewModel._weeklyWeather.observe(this) { response ->
             if (response.list != null) {
-                adapter.weeklyWeatherList = response.list
+                weeklyWeatherAdapter.weatherResponseList = response.list
+            }
+        }
+    }
+
+    private fun observeHourlyWeather() {
+        viewModel._hourlyWeather.observe(this) { response ->
+            if (response.list != null) {
+                hourlyWeatherAdapter.hourlyWeatherList = response.list
             }
         }
     }
@@ -146,6 +178,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Location", "Lat: $lat, Lon: $lon")
 
                 viewModel.fetchWeather(lat, lon)
+                viewModel.fetchHourlyWeather(lat, lon)
                 viewModel.fetchWeeklyWeather(lat, lon)
             } else {
                 Toast.makeText(
