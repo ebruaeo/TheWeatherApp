@@ -34,8 +34,9 @@ class WeeklyWeatherAdapter() : RecyclerView.Adapter<WeeklyWeatherAdapter.ViewHol
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val weeklyWeather = weatherResponseList[position]
-        holder.binding.hourOrDayDegreeTextView.text =
-            weeklyWeather?.main?.weatherTemp?.roundToInt().toString() + "°"
+        val temperature = weeklyWeather?.main?.weatherTemp?.roundToInt().toString() + "°"
+        holder.binding.hourOrDayDegreeTextView.text = temperature
+
 
         holder.binding.hourOrDayTextView.text = getNext7DaysOfWeek().get(position % 7)
 
