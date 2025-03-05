@@ -18,11 +18,21 @@ interface WeatherApiService {
 
 
     @GET("forecast")
+    suspend fun getHourlyWeather(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
+        @Query("appid") apiKey: String,
+        @Query("cnt") numberOfData: Int = 8,
+        @Query("units") units: String = "metric"
+    ): Response<WeeklyWeatherResponse>
+
+
+    @GET("forecast")
     suspend fun getWeeklyWeather(
         @Query("lat") latitude: Double,
         @Query("lon") longitude: Double,
         @Query("appid") apiKey: String,
-        @Query("cnt") numberOfDays: Int = 7,
+        @Query("cnt") numberOfData: Int = 40,
         @Query("units") units: String = "metric"
     ): Response<WeeklyWeatherResponse>
 
